@@ -38,7 +38,19 @@ This is an example pet name generator app used in the OpenAI API [quickstart tut
 8. Run the app:
 
    ```bash
+   $ export FLASK_DEBUG=1
    $ flask run
    ```
+9. Everthing all at once
 
+   ```bash
+   python3 -m venv venv
+   . venv/bin/activate
+   pip install -r requirements.txt
+   export FLASK_DEBUG=1
+   flask run
+   ```
+
+
+ 9
 You should now be able to access the app at [http://localhost:5000](http://localhost:5000)! For the full context behind this example app, check out the [tutorial](https://beta.openai.com/docs/quickstart).
