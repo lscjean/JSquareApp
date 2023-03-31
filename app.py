@@ -1,11 +1,19 @@
 import os
 
-import openai
 from flask import Flask, redirect, render_template, request, url_for
+from flask_cors import CORS, cross_origin
+
+import openai
+
+import json
+from datetime import datetime
 
 app = Flask(__name__)
-openai.api_key = os.getenv("OPENAI_API_KEY")
+CORS(app)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50 megabytes
 
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route("/", methods=("GET", "POST"))
 def index():
@@ -33,3 +41,6 @@ Animal: {}
 Names:""".format(
         animal.capitalize()
     )
+
+if __name__ == '__main__':
+    app.run(debug=True)
