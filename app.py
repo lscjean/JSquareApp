@@ -1,5 +1,4 @@
 import os
-
 from flask import Flask, redirect, render_template, request, url_for
 from flask_cors import CORS, cross_origin
 
@@ -13,10 +12,11 @@ CORS(app)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50 megabytes
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 @app.route("/", methods=("GET", "POST"))
 def index():
+    print(os.environ["OPENAI_API_KEY"])
     if request.method == "POST":
         animal = request.form["animal"]
         response = openai.Completion.create(
