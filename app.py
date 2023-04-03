@@ -45,7 +45,8 @@ def index():
         return redirect(url_for("index", result=response.choices[0].text))
 
     result = request.args.get("result")
-    return render_template("index.html", result=result)
+    formRequest = form_buider(transform_to_dict(getGsheetData(database_gsheet)))
+    return render_template("index.html", result=result, pageInfo=formRequest)
 
 
 def generate_prompt(animal):
@@ -79,6 +80,7 @@ def myFunction():
     input = request.get_json()
     # formStructure = 
     response_data = form_buider(transform_to_dict(getGsheetData(database_gsheet)))
+    print(response_data)
     # Process my_variable
     # response_data = {'status': 'success'}
     return jsonify(response_data)
